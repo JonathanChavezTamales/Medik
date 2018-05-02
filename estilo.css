@@ -1,0 +1,84 @@
+/*
+
+Paleta de colores primarios
+
+#d04442
+#ffffff
+#fac8c8
+#222222
+
+Paleta de colores secundarios
+
+#ff9c9c
+#c35d5d
+
+*/
+
+
+
+body{
+    background-color: #F3F3F3;
+	padding: 0;
+	margin: 0;
+}
+
+nav{
+    background-color: #fff
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #c35d5d;
+    border-color: transparent;
+}
+
+.btn-primary.focus, .btn-primary:focus {
+    box-shadow: 0 0 0 0.2rem #22222222;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #c35d5de3;
+    border-color: transparent;
+}
+
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #ff9c9c;
+    border-color: #c35d5d;
+}
+
+
+.wrapper {
+  display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+}
+
+.footer{
+    background-color: #ddd;
+}
+
+.footer .col-sm-2{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer .navbar-brand{
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.footer i{
+    font-size: 1.8rem;
+}
+
+a{
+    color: #444;
+}
+
+a:hover{
+    color: #222;
+}

@@ -1,0 +1,7 @@
+Main Font Font: Qanelas Soft ExtraBold
+Main Font Color: #d04442
+Slogan Font Font: Arvo Regular
+Slogan Font Color: #d04442
+Monogram Font Font: Qanelas Soft ExtraBold
+Monogram Font Color: #d04442
+Container Color: #fff
