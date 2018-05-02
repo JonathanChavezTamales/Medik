@@ -23,7 +23,7 @@ else:
                     echo 'El usuario ya existe';
                 else:
                     mysqli_query($connection, "INSERT INTO users(id,phone,patient,password,email,date,ip) VALUES ('', '".mysqli_real_escape_string($connection, $_POST['phone'])."', '".mysqli_real_escape_string($connection, $_POST['patient'])."', '".mysqli_real_escape_string($connection, hash('ripemd160', $_POST['password']))."','".mysqli_real_escape_string($connection, $_POST['email'])."', '".date("Y-m-d")."', '".$_SERVER['SERVER_ADDR']."')");
-                    header('Location: login.php');
+                    header('Location: user/login.php');
                 endif;
             endif;
         endif;
@@ -40,10 +40,10 @@ endif;
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="estilos/estilo.css">
     <link href="https://fonts.googleapis.com/css?family=Oxygen|Nunito|Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" href="logo_arriba\Logojoy download (231e8f95-0f91-11e8-991f-01aca75f720d)\Social Media Assets\Favicon\favicon_symbol.png">
+    <link rel="icon" href="logo_arriba/Logojoy download (231e8f95-0f91-11e8-991f-01aca75f720d)/Social Media Assets/Favicon/favicon_symbol.png">
 
 
     <title>Medik - Inicio</title>
@@ -53,7 +53,7 @@ endif;
     <!-- Just an image -->
     <nav class="navbar navbar-light">
       <a style="margin: auto;" class="navbar-brand" href="index.html">
-        <img src="logo_izquierda\Logojoy download (56ef895c-0f96-11e8-8f63-353313cad141)\svg\color_logo_transparent.svg" width="auto" height="50rem" alt="medik">
+        <img src="logo_izquierda/Logojoy download (56ef895c-0f96-11e8-8f63-353313cad141)/svg/color_logo_transparent.svg" width="auto" height="50rem" alt="medik">
       </a>
     </nav>
 
@@ -109,7 +109,7 @@ endif;
         <div class="container my-3">
           <div class="row">
             <div class="col-sm-2">
-              <img src="logo_izquierda\Logojoy download (56ef895c-0f96-11e8-8f63-353313cad141)\svg\dark_logo_transparent.svg" width="auto" height="40rem" alt="medik">
+              <img src="logo_izquierda/Logojoy download (56ef895c-0f96-11e8-8f63-353313cad141)/svg/dark_logo_transparent.svg" width="auto" height="40rem" alt="medik">
             </div>
             <div class="col-sm-2">
               <h5>Legal</h5>

@@ -33,20 +33,20 @@ endif;
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="logo_arriba\Logojoy download (231e8f95-0f91-11e8-991f-01aca75f720d)\Social Media Assets\Favicon\favicon_symbol.png">
+    <link rel="icon" href="../logo_arriba/Logojoy download (231e8f95-0f91-11e8-991f-01aca75f720d)/Social Media Assets/Favicon/favicon_symbol.png">
 
     <title>Login Administración</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <link href="singin.css" rel="stylesheet">
-    <link rel="stylesheet" href="estilo.css">
+    <link href="../estilos/singin.css" rel="stylesheet">
+    <link rel="stylesheet" href="../estilos/estilo.css">
   </head>
 
   <body class="text-center" style="background-color: #343A40; color: white;">
     <form class="form-signin" action="" method="post">
-      <img class="mb-4 img-fluid" src="logo_izquierda\Logojoy download (56ef895c-0f96-11e8-8f63-353313cad141)\svg\white_logo_transparent.svg" alt="" width="" height="">
+      <img class="mb-4 img-fluid" src="../logo_izquierda/Logojoy download (56ef895c-0f96-11e8-8f63-353313cad141)/svg/white_logo_transparent.svg" alt="" width="" height="">
       <h1 class="h3 mb-3 font-weight-normal">Sesión administrativa</h1>
       <label for="inputID" class="sr-only">Nombre de usuario</label>
       <input type="text" name="username" id="inputEmail" class="form-control"  placeholder="Nombre de usuario" required autofocus>

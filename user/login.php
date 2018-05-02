@@ -33,7 +33,7 @@ endif;
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="logo_arriba\Logojoy download (231e8f95-0f91-11e8-991f-01aca75f720d)\Social Media Assets\Favicon\favicon_symbol.png">
+    <link rel="icon" href="logo_arriba/Logojoy download (231e8f95-0f91-11e8-991f-01aca75f720d)/Social Media Assets/Favicon/favicon_symbol.png">
 
     <title>Inicia sesión en Medik</title>
 
@@ -41,12 +41,12 @@ endif;
 
     <!-- Custom styles for this template -->
     <link href="singin.css" rel="stylesheet">
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="estilos/estilo.css">
   </head>
 
   <body class="text-center" style="background-color: #fff;">
     <form class="form-signin" action="" method="post">
-      <img class="mb-4 img-fluid" src="logo_izquierda\Logojoy download (56ef895c-0f96-11e8-8f63-353313cad141)\svg\color_logo_transparent.svg" alt="" width="" height="">
+      <img class="mb-4 img-fluid" src="logo_izquierda/Logojoy download (56ef895c-0f96-11e8-8f63-353313cad141)/svg/color_logo_transparent.svg" alt="" width="" height="">
       <h1 class="h3 mb-3 font-weight-normal">Inicia sesión</h1>
       <label for="inputPhone" class="sr-only">Teléfono</label>
       <input type="tel" name="phone" id="inputPhone" class="form-control" placeholder="Número de celular" required autofocus>
@@ -59,7 +59,7 @@ endif;
       </div>
       <button class="btn btn-lg btn-primary btn-block" name="login" type="submit">Iniciar sesión</button>
       <div class="text-center mt-3"><a href="#">Olvidé mi contraseña</a></div>
-      <div class="text-center mt-3"><a href="signup.php">¿No tienes cuenta? Regístrate</a></div>
+      <div class="text-center mt-3"><a href="user/signup.php">¿No tienes cuenta? Regístrate</a></div>
       <div class="text-center mt-3"><a href="index.html">Ir al inicio</a></div>
       <p class="mt-5 mb-3 text-muted">&copy; 2017-2018 Medik SAPI de CV</p>
     </form>
