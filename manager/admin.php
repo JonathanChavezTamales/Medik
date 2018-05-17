@@ -19,7 +19,7 @@
     
     <!-- Just an image -->
     <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="../index.html">
         <img src="../logo_izquierda/Logojoy download (56ef895c-0f96-11e8-8f63-353313cad141)/svg/white_logo_transparent.svg" width="auto" height="50rem" alt="medik">
       </a>
 
@@ -40,7 +40,7 @@
     <?php
       ob_start();
       session_start();
-      require('config/index.php');
+      require('../config/index.php');
 
       if(isset($_SESSION['admins'])):
           echo '<section class="container p-4"> <div class="h1">Bandeja de entrada de ';

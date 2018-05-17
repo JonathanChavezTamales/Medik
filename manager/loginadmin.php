@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-require('config/index.php');
+require('../config/index.php');
 
 if(isset($_SESSION['admins'])):
     header('Location: admins.php');
@@ -11,8 +11,10 @@ else:
             echo 'Hay datos en blanco';
         elseif(strlen($_POST['username']) > 30):
             echo 'El usuario no puede tener mas de 30 caracteres';
+        elseif($_POST['password'] != $_POST['password2']):
+            echo 'Contraseñas no coinciden';
         else:
-            $login = mysqli_query($connection, "SELECT username,password FROM admins WHERE username = '".mysqli_real_escape_string($connection, $_POST['username'])."' AND password = '".mysqli_real_escape_string($connection, hash('ripemd160', $_POST['password']))."'");
+            $login = mysqli_query($connection, "SELECT username,password FROM admins WHERE username = '".mysqli_real_escape_string($connection, $_POST['username'])."' AND password = '".mysqli_real_escape_string($connection, hash('sha256', $_POST['password']))."'");
             if($login1 = mysqli_fetch_assoc($login)):
                 $_SESSION['admins'] = $_POST['username'];
                 header('Location: admin.php');
@@ -59,7 +61,7 @@ endif;
       </div>
       <button class="btn btn-lg btn-primary btn-block" name="login" type="submit">Iniciar sesión</button>
       <div class="text-center mt-3"><a style="color: #fff;" href="#">Olvidé mi contraseña</a></div>
-      <div class="text-center mt-3"><a style="color: #fff;" href="index.html">Ir al inicio</a></div>
+      <div class="text-center mt-3"><a style="color: #fff;" href="../index.html">Ir al inicio</a></div>
       <p class="mt-5 mb-3 text-light">&copy; 2017-2018 Medik SAPI de CV</p>
     </form>
   </body>

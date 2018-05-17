@@ -61,6 +61,7 @@
           <div class="btn-group">
             <a href="user/login.php" class="btn btn-primary mr-sm-2" role="button" aria-pressed="true">Iniciar sesión</a>
             <a href="user/signup.php" class="btn btn-info mr-sm-2" role="button" aria-pressed="true">Registrarse</a>
+            <a href="#admin" class="btn btn-secondary mr-sm-2" role="button" aria-pressed="true">Admin</a>
           </div>
         </form>
       </div>
@@ -172,11 +173,11 @@
         </p>
 
       <div class="row">
-        <div class="col-6 text-center">
-          <a href="loginadmin.php"><button type="button" class="btn btn-primary btn-lg">Inicia sesión</button></a>
+        <div  id="admin" class="col-6 text-center">
+          <a href="manager/loginadmin.php"><button type="button" class="btn btn-primary btn-lg">Inicia sesión</button></a>
         </div>
         <div class="col-6 text-center">
-          <a href="manager/user/signup.php"> <button type="button" class="btn btn-secondary btn-lg">Regístrate</button></a>
+          <a href="manager/signupadmin.php"> <button type="button" class="btn btn-secondary btn-lg">Regístrate</button></a>
         </div>
       </div>
     </section>
@@ -315,6 +316,18 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>

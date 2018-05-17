@@ -1,35 +1,3 @@
-<?php
-ob_start();
-session_start();
-require('config/index.php');
-
-if(isset($_SESSION['users'])):
-    header('Location: user.php');
-else:
-    if(isset($_POST['register'])):
-        if(empty($_POST['phone']) || empty($_POST['patient']) || empty($_POST['password'])):
-            echo 'No dejes campos en blanco';
-        elseif(strlen($_POST['phone']) > 30):
-            echo 'El número de teléfono no puede tener mas de 30 caracteres';
-        elseif(strlen($_POST['patient']) > 30):
-            echo 'El id de paciente no puede tener mas de 30 caracteres';
-        else:
-            $phone = mysqli_query($connection, "SELECT phone FROM users WHERE phone = '".mysqli_real_escape_string($connection, $_POST['phone'])."'");
-            if($phone1 = mysqli_fetch_assoc($phone)):
-                echo 'El número de teléfono ya existe';
-            else:
-                $user = mysqli_query($connection, "SELECT patient FROM users WHERE patient = '".mysqli_real_escape_string($connection, $_POST['patient'])."'");
-                if($user1 = mysqli_fetch_assoc($user)):
-                    echo 'El usuario ya existe';
-                else:
-                    mysqli_query($connection, "INSERT INTO users(id,phone,patient,password,email,date,ip) VALUES ('', '".mysqli_real_escape_string($connection, $_POST['phone'])."', '".mysqli_real_escape_string($connection, $_POST['patient'])."', '".mysqli_real_escape_string($connection, hash('ripemd160', $_POST['password']))."','".mysqli_real_escape_string($connection, $_POST['email'])."', '".date("Y-m-d")."', '".$_SERVER['SERVER_ADDR']."')");
-                    header('Location: user/login.php');
-                endif;
-            endif;
-        endif;
-    endif;
-endif;
-?>
 
 <!doctype html>
 <html lang="en">
@@ -40,10 +8,10 @@ endif;
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="estilos/estilo.css">
+    <link rel="stylesheet" href="../estilos/estilo.css">
     <link href="https://fonts.googleapis.com/css?family=Oxygen|Nunito|Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" href="logo_arriba/Logojoy download (231e8f95-0f91-11e8-991f-01aca75f720d)/Social Media Assets/Favicon/favicon_symbol.png">
+    <link rel="icon" href="../logo_arriba/Logojoy download (231e8f95-0f91-11e8-991f-01aca75f720d)/Social Media Assets/Favicon/favicon_symbol.png">
 
 
     <title>Medik - Inicio</title>
@@ -52,8 +20,8 @@ endif;
     
     <!-- Just an image -->
     <nav class="navbar navbar-light">
-      <a style="margin: auto;" class="navbar-brand" href="index.html">
-        <img src="logo_izquierda/Logojoy download (56ef895c-0f96-11e8-8f63-353313cad141)/svg/color_logo_transparent.svg" width="auto" height="50rem" alt="medik">
+      <a style="margin: auto;" class="navbar-brand" href="../index.html">
+        <img src="../logo_izquierda/Logojoy download (56ef895c-0f96-11e8-8f63-353313cad141)/svg/color_logo_transparent.svg" width="auto" height="50rem" alt="medik">
       </a>
     </nav>
 
@@ -61,8 +29,12 @@ endif;
       
       <h1>Regístrate</h1>
 
+      <div class="alert alert-danger" id="roller" style="display:none;" role="alert">
+             ss
+          </div>
+
       <form method="post">
-        <div class="p-5">
+        <div class="pb-5 pr-5 pl-5 pt-2">
           <div class="form-row">
             <div class="form-group col-md-12">
               <label for="inputPhone">Teléfono</label>
@@ -76,7 +48,7 @@ endif;
             </div>
             <div class="form-group col-md-4">
               <label for="inputPassword2">Confirmar contraseña</label>
-              <input type="password" class="form-control" id="inputPassword2" placeholder="Contraseña" required>
+              <input type="password" class="form-control" name="password2" id="inputPassword2" placeholder="Contraseña" required>
             </div>
           </div>
           <div class="form-group">
@@ -99,9 +71,53 @@ endif;
           <button type="submit" name="register" class="btn btn-primary btn-lg">Hecho</button>
         </div>
       </form>
-
-
     </section>
+
+
+<?php
+ob_start();
+session_start();
+require('../config/index.php');
+
+if(isset($_SESSION['users'])):
+    header('Location: user.php');
+else:
+    if(isset($_POST['register'])):
+        if(empty($_POST['phone']) || empty($_POST['patient']) || empty($_POST['password'])):
+            echo '<script type="text/javascript">document.getElementById("roller").style.display = "block";
+            document.getElementById("roller").innerHTML = "Ingrese datos completos.";
+                      </script>';
+        elseif(strlen($_POST['phone']) > 30):
+            echo '<script type="text/javascript">document.getElementById("roller").style.display = "block";
+            document.getElementById("roller").innerHTML = "Teléfono no debe ser mayor ";
+                      </script>';
+        elseif(strlen($_POST['patient']) > 15):
+            echo '<script type="text/javascript">document.getElementById("roller").style.display = "block";
+                        document.getElementById("roller").innerHTML = "ID de paciente no puede ser mayor a 15 dígitos";
+                      </script>';
+        elseif($_POST['password'] != $_POST['password2']):
+            echo '<script type="text/javascript">document.getElementById("roller").style.display = "block";
+            document.getElementById("roller").innerHTML = "Contraseñas no coinciden"; </script>';
+        else:
+            $phone = mysqli_query($connection, "SELECT phone FROM users WHERE phone = '".mysqli_real_escape_string($connection, $_POST['phone'])."'");
+            if($phone1 = mysqli_fetch_assoc($phone)):
+                echo '<script type="text/javascript">document.getElementById("roller").style.display = "block";
+            document.getElementById("roller").innerHTML = "El número ya está registrado."; </script>';
+            else:
+                $user = mysqli_query($connection, "SELECT patient FROM users WHERE patient = '".mysqli_real_escape_string($connection, $_POST['patient'])."'");
+                if($user1 = mysqli_fetch_assoc($user)):
+                    echo '<script type="text/javascript">document.getElementById("roller").style.display = "block";
+            document.getElementById("roller").innerHTML = "El ID de paciente ya está ocupado"; </script>';
+                else:
+                    mysqli_query($connection, "INSERT INTO users(id,phone,patient,password,email,date,ip) VALUES ('', '".mysqli_real_escape_string($connection, $_POST['phone'])."', '".mysqli_real_escape_string($connection, $_POST['patient'])."', '".mysqli_real_escape_string($connection, hash('sha256', $_POST['password']))."','".mysqli_real_escape_string($connection, $_POST['email'])."', '".date("Y-m-d")."', '".$_SERVER['SERVER_ADDR']."')");
+                    header('Location: login.php');
+                endif;
+            endif;
+        endif;
+    endif;
+endif;
+?>
+
              
 
     <section class="footer p-4">
@@ -109,7 +125,7 @@ endif;
         <div class="container my-3">
           <div class="row">
             <div class="col-sm-2">
-              <img src="logo_izquierda/Logojoy download (56ef895c-0f96-11e8-8f63-353313cad141)/svg/dark_logo_transparent.svg" width="auto" height="40rem" alt="medik">
+              <img src="../logo_izquierda/Logojoy download (56ef895c-0f96-11e8-8f63-353313cad141)/svg/dark_logo_transparent.svg" width="auto" height="40rem" alt="medik">
             </div>
             <div class="col-sm-2">
               <h5>Legal</h5>
@@ -182,3 +198,4 @@ endif;
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>
+
