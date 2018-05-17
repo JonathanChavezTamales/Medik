@@ -1,31 +1,3 @@
-<?php
-ob_start();
-session_start();
-require('../config/index.php');
-
-if(isset($_SESSION['admins'])):
-    header('Location: admins.php');
-else:
-    if(isset($_POST['login'])):
-        if(empty($_POST['username']) || empty($_POST['password'])):
-            echo 'Hay datos en blanco';
-        elseif(strlen($_POST['username']) > 30):
-            echo 'El usuario no puede tener mas de 30 caracteres';
-        elseif($_POST['password'] != $_POST['password2']):
-            echo 'Contraseñas no coinciden';
-        else:
-            $login = mysqli_query($connection, "SELECT username,password FROM admins WHERE username = '".mysqli_real_escape_string($connection, $_POST['username'])."' AND password = '".mysqli_real_escape_string($connection, hash('sha256', $_POST['password']))."'");
-            if($login1 = mysqli_fetch_assoc($login)):
-                $_SESSION['admins'] = $_POST['username'];
-                header('Location: admin.php');
-                echo 'Datos correctos';
-            else:
-                echo 'Datos incorrectos';
-            endif;
-        endif;
-    endif;
-endif;
-?>
 
 
 <!doctype html>
@@ -50,6 +22,9 @@ endif;
     <form class="form-signin" action="" method="post">
       <img class="mb-4 img-fluid" src="../logo_izquierda/Logojoy download (56ef895c-0f96-11e8-8f63-353313cad141)/svg/white_logo_transparent.svg" alt="" width="" height="">
       <h1 class="h3 mb-3 font-weight-normal">Sesión administrativa</h1>
+      <div class="alert alert-danger" id="roller" style="display:none;" role="alert">
+        Datos incorrectos.
+      </div>
       <label for="inputID" class="sr-only">Nombre de usuario</label>
       <input type="text" name="username" id="inputEmail" class="form-control"  placeholder="Nombre de usuario" required autofocus>
       <label for="inputPassword" class="sr-only">Contraseña</label>
@@ -66,3 +41,34 @@ endif;
     </form>
   </body>
 </html>
+
+<?php
+ob_start();
+session_start();
+require('../config/index.php');
+
+if(isset($_SESSION['admins'])):
+    header('Location: admin.php');
+else:
+    if(isset($_POST['login'])):
+        if(empty($_POST['username']) || empty($_POST['password'])):
+            echo 'Hay datos en blanco';
+        elseif(strlen($_POST['username']) > 30):
+            echo '<script type="text/javascript">document.getElementById("roller").style.display = "block";
+                        document.getElementById("roller").innerHTML = "El teléfono no debe ser mayor a 15 dígitos.";
+                      </script>';
+        else:
+            $login = mysqli_query($connection, "SELECT username,password FROM admins WHERE username = '".mysqli_real_escape_string($connection, $_POST['username'])."' AND password = '".mysqli_real_escape_string($connection, hash('sha256', $_POST['password']))."'");
+            if($login1 = mysqli_fetch_assoc($login)):
+                $_SESSION['admins'] = $_POST['username'];
+                header('Location: admin.php');
+            else:
+              echo hash('sha256', $_POST['password']);
+                echo '<script type="text/javascript">document.getElementById("roller").style.display = "block";
+                      </script>';
+            endif;
+        endif;
+    endif;
+endif;
+?>
+

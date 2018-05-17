@@ -43,7 +43,7 @@
       require('../config/index.php');
 
       if(isset($_SESSION['admins'])):
-          echo '<section class="container p-4"> <div class="h1">Bandeja de entrada de ';
+          echo '<section class="container p-4"> <div class="h1">Panel de ';
             echo $_SESSION['admins'];
             echo '</div> <hr><section>';
           if(@$_GET['action'] == 'delete-receiver' AND isset($_GET['id'])):
@@ -74,17 +74,17 @@
           elseif(@$_GET['action'] == 'enviado' AND isset($_GET['id'])):
               $mensaje = mysqli_query($connection, "SELECT id,title,message FROM messages WHERE id = '".mysqli_real_escape_string($connection, $_GET['id'])."' AND sender = '".$_SESSION['admins']."'");
               if($mensaje1 = mysqli_fetch_assoc($mensaje)):
-                  echo '<b>Titulo:</b> '.$mensaje1['title'].'<br><b>Mensaje:</b> '.$mensaje1['message'].' <a href="?action=delete-sender&id='.$mensaje1['id'].'">Eliminar mensaje</a><br>';
+                  echo '<b>Titulo:</b> '.$mensaje1['title'].'<br><b>Mensaje:</b> '.$mensaje1['message'].'<br> <a href="?action=delete-sender&id='.$mensaje1['id'].'"><span class="badge badge-danger">Eliminar mensaje</span></a><br>';
               else:
                   echo 'No puedes leer este mensaje<br>';
               endif;
           elseif(@$_GET['action'] == 'enviado'):
-              echo '<b>Mensajes Enviados:</b><br>';
+              echo '<h4><b>Mensajes Enviados:</b></h4><br>';
               $sender = mysqli_query($connection, "SELECT title FROM messages WHERE sender = '".$_SESSION['admins']."'");
               if($sender1 = mysqli_fetch_assoc($sender)):
                   $sender1 = mysqli_query($connection, "SELECT id,title FROM messages WHERE sender = '".$_SESSION['admins']."'");
                   while($sender2 = mysqli_fetch_assoc($sender1)):
-                      echo '<a href="?action=enviado&id='.$sender2['id'].'">'.$sender2['title'].'</a><br>';
+                      echo '<li class="list-group-item"><a href="?action=enviado&id='.$sender2['id'].'">'.$sender2['title'].'</a></li>';
                   endwhile;
               else:
                   echo 'No haz enviado ningun mensaje<br><br>';
@@ -99,7 +99,9 @@
                               mysqli_query($connection, "INSERT INTO messages(id,sender,receiver,title,message,isRead,date,ip) VALUES ('', '".$_SESSION['admins']."', '".mysqli_real_escape_string($connection, $_POST['patient'])."', '".mysqli_real_escape_string($connection, $_POST['title'])."', '".mysqli_real_escape_string($connection, $_POST['message'])."', 'no', '".date("Y-m-d")."', '".$_SERVER['SERVER_ADDR']."')");
                               header('Location: ?action=enviado');
                       else:
-                              echo 'El usuario no existe';
+                              echo '<div class="alert alert-danger" id="roller" style="display:box;" role="alert">
+             El ID de paciente no corresponde con ningún paciente.
+          </div>';
                       endif;
                   endif;
               endif;
@@ -127,7 +129,8 @@
                         </div>
                     </form>';
           endif;
-              echo '<br><a href="?action=create">Nuevo mensaje</a> | <a href="?action=enviado">Mensajes enviados</a><hr>';
+              echo '<br><a href="admin.php"><span class="lead">Inicio</span></a> |
+              <a href="?action=create"><span class="lead">Nuevo mensaje</span></a> | <a href="?action=enviado#"><span class="lead">Mensajes enviados</span><hr>';
       else:
           header('Location: loginadmin.php'); /*A donde manda cuando se abre admin.php sin estar logeado*/
       endif;

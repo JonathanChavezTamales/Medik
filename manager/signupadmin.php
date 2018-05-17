@@ -93,6 +93,10 @@ else:
         elseif($_POST['password'] != $_POST['password2']):
             echo '<script type="text/javascript">document.getElementById("roller").style.display = "block";
             document.getElementById("roller").innerHTML = "Contraseñas no coinciden"; </script>';
+        elseif(strlen($_POST['password']) < 8 && strlen($_POST['password']) < 8):
+            echo '<script type="text/javascript">document.getElementById("roller").style.display = "block";
+                        document.getElementById("roller").innerHTML = "Contraseña debe ser mayor o igual a 8 caracteres.";
+                      </script>';
         else:
             $email = mysqli_query($connection, "SELECT email FROM admins WHERE email = '".mysqli_real_escape_string($connection, $_POST['email'])."'");
             if($email1 = mysqli_fetch_assoc($email)):
